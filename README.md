@@ -72,7 +72,7 @@ deactivate
 Sử dụng Gunicorn để hỗ trợ xử lý song song nhiều luồng:
 
 ```bash
-gunicorn --workers 1 --threads 8 --bind 0.0.0.0:8899 app:app
+./venv/bin/gunicorn --workers 1 --threads 8 --bind 0.0.0.0:8899 app:app
 ```
 
 Sau đó truy cập địa chỉ: `http://<IP-cua-ban>:8899`
@@ -88,7 +88,7 @@ sudo npm install -g pm2
 
 **Chạy với Gunicorn qua PM2 (Khuyên dùng):**
 ```bash
-pm2 start "gunicorn --workers 1 --threads 4 --bind 0.0.0.0:8899 app:app" --name "reclip-custom"
+pm2 start "./venv/bin/gunicorn --workers 1 --threads 4 --bind 0.0.0.0:8899 app:app" --name "reclip-custom"
 ```
 
 **Hoặc chạy trực tiếp bằng Python:**
@@ -123,4 +123,3 @@ docker run -p 8899:8899 reclip-custom
 - **Backend:** Python + Flask
 - **Frontend:** Vanilla HTML/CSS/JS
 - **Download engine:** [yt-dlp](https://github.com/yt-dlp/yt-dlp) + [ffmpeg](https://ffmpeg.org/)
-

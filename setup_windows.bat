@@ -37,7 +37,7 @@ if not exist venv (
     )
     echo [+] Activating environment and installing dependencies...
     call venv\Scripts\activate
-    pip install -q flask yt-dlp
+    pip install -q -r requirements.txt
 ) else (
     echo [+] Activating virtual environment...
     call venv\Scripts\activate
