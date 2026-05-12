@@ -14,7 +14,16 @@ Công cụ tải video và âm thanh mã nguồn mở với giao diện web sạ
 - Giao diện sạch, phản hồi nhanh (Responsive)
 - Backend đơn giản bằng Python Flask
 
-## Hướng dẫn cài đặt (Ubuntu)
+## Cài đặt và Chạy nhanh
+
+Dự án đã cung cấp sẵn các script tự động hóa việc cài đặt môi trường ảo (venv), cài thư viện và chạy ứng dụng:
+
+- **Windows:** Click đúp vào file `setup_windows.bat` (hoặc chạy trong CMD/PowerShell).
+- **Linux/macOS:** Chạy lệnh `./setup_linux.sh` (cần cấp quyền `chmod +x setup_linux.sh` trước).
+
+---
+
+## Hướng dẫn cài đặt thủ công (Linux/Ubuntu)
 
 ### 1. Cài đặt các gói hệ thống
 Yêu cầu Python 3 và FFmpeg để ghép âm thanh cho video chất lượng cao:
@@ -31,6 +40,32 @@ cd reclip-custom
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
+```
+
+**Thoát môi trường ảo:**
+Sau khi hoàn thành công việc, bạn có thể thoát khỏi môi trường ảo bằng lệnh:
+```bash
+deactivate
+```
+
+---
+
+## Hướng dẫn cài đặt thủ công (Windows)
+
+1. **Cài đặt Python:** Tải và cài đặt từ [python.org](https://www.python.org/).
+2. **Cài đặt FFmpeg:** Tải bản build cho Windows và thêm vào biến môi trường PATH.
+3. **Thiết lập môi trường:**
+```cmd
+git clone https://github.com/HidoNeko/reclip-custom
+cd reclip-custom
+python -m venv venv
+venv\Scripts\activate
+pip install -r requirements.txt
+```
+
+**Thoát môi trường ảo:**
+```cmd
+deactivate
 ```
 
 ### 3. Chạy ứng dụng với Gunicorn (Đề xuất)

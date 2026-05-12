@@ -45,5 +45,11 @@ export PORT
 
 echo ""
 echo "  ReClip is running at http://localhost:$PORT"
+echo "  Press Ctrl+C to stop."
 echo ""
 python3 app.py
+
+# Deactivate venv on exit
+if [ -n "$VIRTUAL_ENV" ]; then
+    deactivate
+fi
