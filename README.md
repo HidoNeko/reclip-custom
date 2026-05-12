@@ -26,7 +26,7 @@ sudo apt install -y python3-pip python3-venv ffmpeg
 
 ### 2. Thiết lập môi trường
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/HidoNeko/reclip-custom
 cd reclip
 python3 -m venv venv
 source venv/bin/activate
