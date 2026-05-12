@@ -42,6 +42,32 @@ gunicorn --workers 1 --threads 8 --bind 0.0.0.0:8899 app:app
 
 Sau đó truy cập địa chỉ: `http://<IP-cua-ban>:8899`
 
+### 4. Chạy với PM2 (Quản lý tiến trình)
+
+PM2 giúp ứng dụng chạy ngầm, tự động khởi động lại nếu bị lỗi hoặc sau khi reboot máy chủ.
+
+**Cài đặt PM2 (nếu chưa có):**
+```bash
+sudo npm install -g pm2
+```
+
+**Chạy với Gunicorn qua PM2 (Khuyên dùng):**
+```bash
+pm2 start "gunicorn --workers 1 --threads 4 --bind 0.0.0.0:8899 app:app" --name "reclip"
+```
+
+**Hoặc chạy trực tiếp bằng Python:**
+```bash
+pm2 start app.py --name "reclip" --interpreter ./venv/bin/python
+```
+
+**Quản lý ứng dụng:**
+- `pm2 status`: Xem danh sách ứng dụng đang chạy.
+- `pm2 logs reclip`: Xem log (nhật ký) của ứng dụng.
+- `pm2 restart reclip`: Khởi động lại.
+- `pm2 stop reclip`: Dừng ứng dụng.
+- `pm2 save`: Lưu cấu hình để tự khởi động lại sau khi reboot server (cần chạy `pm2 startup` trước).
+
 ## Chạy với Docker
 
 ```bash
