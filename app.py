@@ -4,6 +4,7 @@ import glob
 import json
 import subprocess
 import threading
+import sys
 # pyrefly: ignore [missing-import]
 from flask import Flask, request, jsonify, send_file, render_template
 
@@ -14,11 +15,23 @@ os.makedirs(DOWNLOAD_DIR, exist_ok=True)
 jobs = {}
 
 
+def get_yt_dlp_binary():
+    """Tìm đường dẫn yt-dlp trong venv hoặc hệ thống"""
+    # Thử tìm trong thư mục của python interpreter hiện tại (venv)
+    interpreter_dir = os.path.dirname(sys.executable)
+    exe_name = "yt-dlp.exe" if os.name == "nt" else "yt-dlp"
+    venv_exe = os.path.join(interpreter_dir, exe_name)
+    
+    if os.path.exists(venv_exe):
+        return venv_exe
+    return "yt-dlp" # Mặc định dùng global nếu không thấy trong venv
+
+
 def run_download(job_id, url, format_choice, format_id):
     job = jobs[job_id]
     out_template = os.path.join(DOWNLOAD_DIR, f"{job_id}.%(ext)s")
 
-    cmd = ["yt-dlp", "--no-playlist", "-o", out_template]
+    cmd = [get_yt_dlp_binary(), "--no-playlist", "-o", out_template]
 
     if format_choice == "audio":
         cmd += ["-x", "--audio-format", "mp3"]
@@ -88,7 +101,7 @@ def get_info():
     if not url:
         return jsonify({"error": "No URL provided"}), 400
 
-    cmd = ["yt-dlp", "--no-playlist", "-j", url]
+    cmd = [get_yt_dlp_binary(), "--no-playlist", "-j", url]
     try:
         result = subprocess.run(cmd, capture_output=True, text=True, timeout=60)
         if result.returncode != 0:
