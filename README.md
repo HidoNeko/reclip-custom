@@ -1,4 +1,4 @@
-# ReClip
+# ReClip Custom
 
 Công cụ tải video và âm thanh mã nguồn mở với giao diện web sạch sẽ. Hỗ trợ tải từ YouTube, TikTok, Instagram, Twitter/X và hơn 1000 trang web khác — định dạng MP4 hoặc MP3.
 
@@ -27,7 +27,7 @@ sudo apt install -y python3-pip python3-venv ffmpeg
 ### 2. Thiết lập môi trường
 ```bash
 git clone https://github.com/HidoNeko/reclip-custom
-cd reclip
+cd reclip-custom
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
@@ -53,26 +53,26 @@ sudo npm install -g pm2
 
 **Chạy với Gunicorn qua PM2 (Khuyên dùng):**
 ```bash
-pm2 start "gunicorn --workers 1 --threads 4 --bind 0.0.0.0:8899 app:app" --name "reclip"
+pm2 start "gunicorn --workers 1 --threads 4 --bind 0.0.0.0:8899 app:app" --name "reclip-custom"
 ```
 
 **Hoặc chạy trực tiếp bằng Python:**
 ```bash
-pm2 start app.py --name "reclip" --interpreter ./venv/bin/python
+pm2 start app.py --name "reclip-custom" --interpreter ./venv/bin/python
 ```
 
 **Quản lý ứng dụng:**
 - `pm2 status`: Xem danh sách ứng dụng đang chạy.
-- `pm2 logs reclip`: Xem log (nhật ký) của ứng dụng.
-- `pm2 restart reclip`: Khởi động lại.
-- `pm2 stop reclip`: Dừng ứng dụng.
+- `pm2 logs reclip-custom`: Xem log (nhật ký) của ứng dụng.
+- `pm2 restart reclip-custom`: Khởi động lại.
+- `pm2 stop reclip-custom`: Dừng ứng dụng.
 - `pm2 save`: Lưu cấu hình để tự khởi động lại sau khi reboot server (cần chạy `pm2 startup` trước).
 
 ## Chạy với Docker
 
 ```bash
-docker build -t reclip .
-docker run -p 8899:8899 reclip
+docker build -t reclip-custom .
+docker run -p 8899:8899 reclip-custom
 ```
 
 ## Cách sử dụng
